@@ -1,6 +1,6 @@
 <?php
-$tituloPagina = "Carreras";
-require '../include/header.php';
+    $tituloPagina = "Carreras";
+    require '../vistas/include/header.php';
 ?>
 
 <div class="page-header text-center"><h3>Carreras</h3></div>
@@ -48,18 +48,18 @@ require '../include/header.php';
             </td>
             <td>8</td>
             <td>
-                <a href="EditarCrear.php" class="openModal"> <i class="fa fa-edit"></i>Editar </a>                             
-                <a href="Eliminar.php" class="openModal"><i class="fa fa-times-circle"></i>Eliminar </a>
-                <a href="CrearMateriaPensum.php" class="openModal"> <i class="fa fa-file-text-o"></i>Agregar Materia</a>                             
-                <a href="MateriasCarrera.php" class="openModal"><i class="fa fa-tasks"></i>Pensum </a>
+                <a href="programas.php?action=editar" class="openModal"> <i class="fa fa-edit"></i>Editar </a>                             
+                <a href="programas.php?action=eliminar" class="openModal"><i class="fa fa-times-circle"></i>Eliminar </a>
+                <a href="programas.php?action=crearpensum" class="openModal"> <i class="fa fa-file-text-o"></i>Agregar Materia</a>                             
+                <a href="programas.php?action=pensum" class="openModal"><i class="fa fa-tasks"></i>Pensum </a>
             </td>
         </tr>
     </tbody>
 </table>
 <div class="text-right">                     
-    <a href="EditarCrear.php" class="openModal btn btn-primary"> Crear </a>
+    <a href="programas.php?action=crear" class="openModal btn btn-primary"> Crear </a>
 </div>
 
 <?php
-require '../include/footer.php';
+require '../vistas/include/footer.php';
 ?>

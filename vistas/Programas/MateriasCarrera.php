@@ -1,10 +1,4 @@
 
-<?php
-
-$tituloModal = "Pensum";
-require '../include/modalOpen.php';
-?>
-
 <table class="table table-responsive table-striped table-hover" >
     <thead>
         <tr>
@@ -79,8 +73,3 @@ require '../include/modalOpen.php';
         </tr>
     </tbody>
 </table>
-
-<?php
-
-require '../include/modalClose.php';
-?>
