@@ -9,6 +9,7 @@
                 <?php require $modalBody;?>
             </div>
             <div class="modal-footer">
+                dfdf
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                 <input type="submit" class="btn btn-primary" value="Guardar"/>
             </div>
