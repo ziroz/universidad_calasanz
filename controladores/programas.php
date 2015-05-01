@@ -1,40 +1,74 @@
+
+
 <?php
+require '../modelo/conexion.php';
+
 
 if (isset($_GET['action'])) {
     $action = $_GET["action"];
+    $isPost = $_SERVER['REQUEST_METHOD'] === 'POST';
+    
+    if ($action == "ingresar") {
 
-    if ($action == "crear") {
-        $isPost = count($_POST) > 0;
         if ($isPost) {
-            echo '<pre>';
-            var_dump($_POST);
-            echo '</pre>';
-            exit();
+            programasM::ingresar($_POST);
+
             header('Location:programas.php');
         } else {
-            $modalBody = '../vistas/Programas/EditarCrear.php';
-            $formAction = 'programas.php?action=crear';
-            $tituloModal = 'Crear Carrera';
+
+            $data['modalBody'] = '../vistas/Programas/EditarCrear.php';
+            $data['formAction'] = 'programas.php?action=ingresar';
+            $data['tituloModal'] = 'Crear Carrera';
+
+            $modelo = [
+                "car_codigoP" => "",
+                "car_nombre" => "",
+                "car_valor_semestre" => "",
+                "car_numero_semestres" => ""
+            ];
+
+            require '../vistas/include/modal.php';
+        }
+    } else
+    if ($action == "modificar") {
+        if ($isPost) {
+
+            programasM::modificar($_POST);
+
+            header('Location:programas.php');
+        } else {
+
+            $data['modalBody'] = '../vistas/Programas/EditarCrear.php';
+            $data['formAction'] = 'programas.php?action=modificar';
+            $data['tituloModal'] = 'Modificar Carrera';
+            
+            $modelo = programasM::detalleRetornar($_GET["id"]);
 
             require '../vistas/include/modal.php';
         }
     } else
     if ($action == "pensum") {
 
-        $modalBody = '../vistas/Programas/MateriasCarrera';
-        $tituloModal = 'Pensum';
+        $data['modalBody'] = '../vistas/Programas/MateriasCarrera';
+        $data['tituloModal'] = 'Pensum';
 
         require '../vistas/include/modalSimple.php';
     } else
-        if ($action == "crearpensum") {
+    if ($action == "eliminar") {
+        
+        programasM::eliminar($_GET["id"]);
+        header('Location:programas.php');
+    } else
+    if ($action == "crearpensum") {
 
-            $modalBody = '../vistas/Programas/CrearMateriaPensum.php';
-            $formAction = 'programas.php?action=crearpensum';
-            $tituloModal = 'Agregar Materia Pensum';
+        $data['modalBody'] = '../vistas/Programas/CrearMateriaPensum.php';
+        $data['formAction'] = 'programas.php?action=crearpensum';
+        $data['tituloModal'] = 'Agregar Materia Pensum';
 
-            require '../vistas/include/modal.php';
-        }
+        require '../vistas/include/modal.php';
+    }
 } else {
+    $datos = programasM::retornar();
     require '../vistas/Programas/Lista.php';
 }
 ?>

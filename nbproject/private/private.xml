@@ -3,14 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/Universidad_Calasanz/controladores/estudiantes.php</file>
+            <file>file:/C:/xampp/htdocs/Universidad_Calasanz/modelo/personaM.php</file>
+            <file>file:/C:/xampp/htdocs/Universidad_Calasanz/modelo/docenteM.php</file>
             <file>file:/C:/xampp/htdocs/Universidad_Calasanz/vistas/include/header.php</file>
-            <file>file:/C:/xampp/htdocs/Universidad_Calasanz/vistas/Estudiantes/MatricularMateria.php</file>
-            <file>file:/C:/xampp/htdocs/Universidad_Calasanz/vistas/assets/js/evaluacion.js</file>
             <file>file:/C:/xampp/htdocs/Universidad_Calasanz/controladores/programas.php</file>
-            <file>file:/C:/xampp/htdocs/Universidad_Calasanz/vistas/Estudiantes/Lista.php</file>
+            <file>file:/C:/xampp/htdocs/Universidad_Calasanz/modelo/programasM.php</file>
             <file>file:/C:/xampp/htdocs/Universidad_Calasanz/vistas/Programas/Lista.php</file>
-            <file>file:/C:/xampp/htdocs/Universidad_Calasanz/vistas/Programas/EditarCrear.php</file>
+            <file>file:/C:/xampp/htdocs/Universidad_Calasanz/modelo/materiasM.php</file>
         </group>
     </open-files>
 </project-private>

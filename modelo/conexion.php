@@ -1,6 +1,7 @@
 <?php
 
 mysql_connect("localhost", "root", "");
-mysql_select_db("empresa");
+mysql_select_db("db_uni_calasaz");
 
-require './modelo/DepartamentoM.php';
+
+require '../modelo/programasM.php';

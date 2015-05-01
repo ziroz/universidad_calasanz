@@ -22,7 +22,7 @@ fici = {
             var validation = $(item).attr('data-validation') || '';
             $(item).attr('data-validation', validation + ' email');
         });
-        
+
         $.each(form.find('.number'), function (index, item) {
             var validation = $(item).attr('data-validation') || '';
             $(item).attr('data-validation', validation + ' number');
@@ -35,19 +35,16 @@ fici = {
         });
 
         $.each(form.find('.currency'), function (index, item) {
-            var newItem = '<input type="hidden" id="' + $(item).attr("id") + '" name="' + $(item).attr("name") + '" value="' + $(item).val() + '" />';
-            $(item).parent().append(newItem);
-
-            $(item).removeAttr('id');
-            $(item).removeAttr('name');
-            
-            $(item).attr('data-precision', '0');
-            $(item).attr('data-thousands', '.');
-            $(item).attr('data-prefix', '$ ');
-            $(item).maskMoney();
-            $(item).on('change',function(e){
-                $("#" + $(newItem).attr("id")).val($(this).maskMoney('unmasked')[0]);
+            $(this).inputmask("currency", {
+                digits: 0,
+                removeMaskOnSubmit: true,
+                groupSeparator: ".",
+                radixPoint:".", 
+                autoGroup: true,
+                prefix: '$'
             });
+            
+            $(this).css("text-align","left");
         });
 
         $.validate();
