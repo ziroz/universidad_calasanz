@@ -3,7 +3,7 @@ $tituloPagina = "Estudiantes";
 require '../vistas/include/header.php';
 ?>
 
-<div class="page-header text-center"><h3>Carreras</h3></div>
+<div class="page-header text-center"><h3>Estudiantes</h3></div>
 <table class="table table-responsive table-striped table-hover" >
     <thead>
         <tr>
@@ -20,9 +20,6 @@ require '../vistas/include/header.php';
                 Apodo
             </th>
             <th>
-                Usuario
-            </th>
-            <th>
                 Carrera
             </th>
             <th>
@@ -35,104 +32,45 @@ require '../vistas/include/header.php';
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>
-                Steven Ciro
-            </td>
-            <td>
-                09/08/1996
-            </td>
-            <td>
-                jjzapata@gmail.com
-            </td>
-            <td>
-                Ciro
-            </td>
-            <td>
-                Sciro
-            </td>
-            <td>
-                Ingenieria de Sitemas
-            </td>
-            <td>
-                2015-1
-            </td>
-            <td>
-                01/01/2015
-            </td>
-            <td>
-                <a href="EditarCrear.html" class="openModal"> <i class="fa fa-edit"></i> </a>    
-                <a href="MatricularMateria.html" class="openModal"> <i class="fa fa-file-text-o"></i> </a> 
-                <a href="Eliminar.html" class="openModal"><i class="fa fa-times-circle"></i> </a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Maria Jose Alvares Gomez
-            </td>
-            <td>
-                09/07/1994
-            </td>
-            <td>
-                mjalvares@gmail.com
-            </td>
-            <td>
-                Jose
-            </td>
-            <td>
-                mjalvares
-            </td>
-            <td>
-                Enfermeria
-            </td>
-            <td>
-                2015-1
-            </td>
-            <td>
-                01/01/2015
-            </td>
-            <td>
-                <a href="EditarCrear.html" class="openModal"> <i class="fa fa-edit"></i> </a>    
-                <a href="MatricularMateria.html" class="openModal"> <i class="fa fa-file-text-o"></i> </a>
-                <a href="Eliminar.html" class="openModal"><i class="fa fa-times-circle"></i> </a>
+        <?php while ($estudiante = mysql_fetch_assoc($datos)) {
+            ?>
+            <tr>
+                <td>
+                    <?php echo $estudiante["per_nombre_completo"]; ?>
+                </td>
+                <td>
+                    <?php echo $estudiante["per_fecha_nacimiento"]; ?>
+                </td>
+                <td>
+                    <?php echo $estudiante["per_email"]; ?>
+                </td>
+                <td>
+                    <?php echo $estudiante["est_apodo"]; ?>
+                </td>
+                <td>
+                    <?php echo $estudiante["car_nombre"]; ?>
+                </td>
+                <td>
+                    <?php echo $estudiante["peri_nombre"]; ?>
+                </td>
+                <td>
+                    <?php echo $estudiante["est_fecha_matricula"]; ?>
+                </td>
+                <td>
+                    <a href="estudiantes.php?action=modificar&id=<?php echo $estudiante["per_consecutivoP"]; ?>" class="openModal"> <i class="fa fa-edit"></i> Editar</a>
+                    <a href="estudiantes.php?action=matricular&id=<?php echo $estudiante["per_consecutivoP"]; ?>" class="openModal"> <i class="fa fa-file-text-o"></i> Materias</a>
+                    <a href="estudiantes.php?action=eliminar&id=<?php echo $estudiante["per_consecutivoP"]; ?>"><i class="fa fa-times-circle"></i> Eliminar</a>
+                    <a href="estudiantes.php?action=evaluar&id=<?php echo $estudiante["per_consecutivoP"]; ?>" class="openModal"><i class="fa fa-check"></i> Evaluar</a>
+                </td>
+            </tr>
+        <?php } ?>
 
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Manuela Rodriguez
-            </td>
-            <td>
-                30/05/1999
-            </td>
-            <td>
-                mrodriguez@gmail.com
-            </td>
-            <td>
-                Manu
-            </td>
-            <td>
-                mrodriguez
-            </td>
-            <td>
-                Arquitectura
-            </td>
-            <td>
-                2015-1
-            </td>
-            <td>
-                01/01/2015
-            </td>
-            <td>
-                <a href="EditarCrear.html" class="openModal"> <i class="fa fa-edit"></i> </a>
-                <a href="estudiantes.php?action=materias" class="openModal"> <i class="fa fa-file-text-o"></i> </a>
-                <a href="Eliminar.html" class="openModal"><i class="fa fa-times-circle"></i> </a>
-
-            </td>
-
-        </tr>
     </tbody>
 </table>
 <div class="text-right">                     
-    <a href="EditarCrear.html" class="openModal btn btn-primary"> Crear </a>
+    <a href="estudiantes.php?action=ingresar" class="openModal btn btn-primary"> Crear </a>
 </div>
+
+<?php
+require '../vistas/include/footer.php';
+?>

@@ -2,7 +2,7 @@
 <html lang="es-CO">
     <head>
         <title><?php echo $tituloPagina; ?></title>
-        <link rel="icon" type="image/vnd.microsoft.icon" href="corazon_rojo_png_by_catatini-d5lujy4.ico" />
+        <link rel="shortcut icon" href="../vistas/assets/images/favicon.jpg" />
         <meta charset="UTF-8 Unicode">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../vistas/assets/css/style.css"/>
@@ -16,6 +16,7 @@
         <script type="text/javascript" src="../vistas/assets/libs/inputMask/jquery.inputmask.js"></script>
         <script type="text/javascript" src="../vistas/assets/libs/inputMask/jquery.inputmask.numeric.extensions.js"></script>
         <script type="text/javascript" src="../vistas/assets/libs/form-validator/form-validator.js"></script>
+        <script type="text/javascript" src="../vistas/assets/libs/bootbox/bootbox.min.js"></script>
         <script type="text/javascript" src="../vistas/assets/libs/bootstrap/bootstrap.min.js"></script>
         <script type="text/javascript" src="../vistas/assets/libs/moment/moment.js"></script>
         <script type="text/javascript" src="../vistas/assets/libs/date-picker/bootstrap-datetimepicker.js"></script>

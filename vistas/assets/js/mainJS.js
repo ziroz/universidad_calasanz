@@ -14,6 +14,9 @@ fici = {
             format: 'DD/MM/YYYY'
         });
     },
+    mostrarMensaje: function (mensaje) {
+        bootbox.alert(mensaje);
+    },
     inicializarValidaciones: function (form) {
 
         form.find('.required').attr('data-validation', 'required');
@@ -29,9 +32,9 @@ fici = {
         });
 
         $.each(form.find('.date'), function (index, item) {
-            var validation = $(item).attr('data-validation') || '';
-            $(item).attr('data-validation', validation + ' date');
-            $(item).attr('data-validation-format', 'dd/mm/yyyy');
+            var validation = $(item).find("input").attr('data-validation') || '';
+            $(item).find("input").attr('data-validation', validation + ' date');
+            $(item).find("input").attr('data-validation-format', 'dd/mm/yyyy');
         });
 
         $.each(form.find('.currency'), function (index, item) {
@@ -54,8 +57,11 @@ fici = {
 };
 
 $(document).ready(function () {
+    
     $("body").on("click", "a.openModal", function (e) {
         e.preventDefault();
         fici.abrirModal($(this).attr("href"));
     })
+    
+    $('ul.nav a[href="'+ window.location +'"]').parent().addClass('active');
 });

@@ -12,9 +12,11 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="../Programas/Lista.html">Carreras</a></li>
-                <li><a href="../Periodos/Lista.html">Períodos</a></li>
-                <li><a href="../Materias/Lista.html">Materias</a></li>
+                <li><a href="programas.php">Carreras</a></li>
+                <li><a href="periodos.php">Períodos</a></li>
+                <li><a href="materias.php">Materias</a></li>
+                <li><a href="docentes.php">Docentes</a></li>
+                <li><a href="estudiantes.php">Estudiantes</a></li>
                 <!--<li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" >Dropdown <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">

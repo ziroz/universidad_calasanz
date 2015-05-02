@@ -1,5 +1,3 @@
-
-
 <?php
 require '../modelo/conexion.php';
 
