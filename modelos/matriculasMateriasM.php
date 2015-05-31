@@ -15,7 +15,7 @@ class matriculasMateriasM {
     }
     
      public static function retornarPorEstudiante($estudiante){
-        return mysql_query("SELECT matmat_consecutivoP, matmat_per_consecutivo, est.per_nombre_completo as per_nombre_completo, matmat_mat_codigo, mat_nombre, doc.per_nombre_completo AS per_nombre_completo_docente, matmat_aula, matmat_peri_consecutivo, peri_nombre, matmat_eva_nota_corte_1 ,matmat_eva_nota_corte_2 , matmat_eva_nota_corte_3  "
+        return mysql_query("SELECT matmat_consecutivoP, matmat_per_consecutivo, est.per_nombre_completo as per_nombre_completo, matmat_mat_codigo, mat_nombre, doc.per_nombre_completo AS per_nombre_completo_docente, matmat_aula, matmat_peri_consecutivo, peri_nombre, matmat_eva_nota_corte_1 ,matmat_eva_nota_corte_2 , matmat_eva_nota_corte_3, ROUND(((IFNULL(matmat_eva_nota_corte_1,0)+IFNULL(matmat_eva_nota_corte_2,0)+IFNULL(matmat_eva_nota_corte_3,0))/3),1) AS matmat_nota_final   "
                 . "FROM tbl_matriculas_materias "
                 . "JOIN tbl_personas est ON est.per_consecutivoP = matmat_per_consecutivo "
                 . "JOIN tbl_materias ON mat_codigoP = matmat_mat_codigo "
@@ -41,6 +41,11 @@ class matriculasMateriasM {
     }
      public static function ingresarNotaCorte3($data){
         mysql_query("UPDATE tbl_matriculas_materias SET matmat_eva_nota_corte_3  ={$data["matmat_eva_nota_corte_3"]} WHERE matmat_consecutivoP ={$data["matmat_consecutivoP"]}");
+    }
+    public static function NotaFinal($matmat_consecutivoP){
+        $detalle = mysql_query(" SELECT ROUND(((IFNULL(matmat_eva_nota_corte_1,0)+IFNULL(matmat_eva_nota_corte_2,0)+IFNULL(matmat_eva_nota_corte_3,0))/3),1) AS matmat_nota_final FROM tbl_matriculas_materias WHERE matmat_consecutivoP ={$matmat_consecutivoP}");
+                return mysql_fetch_assoc($detalle);
+
     }
     public static function eliminar($matmat_consecutivoP){
         mysql_query("DELETE FROM tbl_matriculas_materias WHERE matmat_consecutivoP=$matmat_consecutivoP");

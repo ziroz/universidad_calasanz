@@ -28,7 +28,7 @@
         <div class='form-group'>
             <select class="form-control" id="matmat_per_consecutivo_docente" name="matmat_per_consecutivo_docente" title="Seleccione Docente">
                 <option value="NULL">Seleccione Docente</option>
-                <?php while ($item = mysql_fetch_assoc($periodos)) { ?>
+                <?php while ($item = mysql_fetch_assoc($docentes)) { ?>
                     <option value="<?php echo $item["doc_per_consecutivoP"] ?>"><?php echo $item["per_nombre_completo"] ?></option>   
                 <?php } ?>
             </select>

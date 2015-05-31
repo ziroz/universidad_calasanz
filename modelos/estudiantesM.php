@@ -1,11 +1,10 @@
 <?php
-include 'personasM.php';
+
 class estudiantesM {
 
     public static function ingresar($data) {
         $persona = personasM::ingresar($data);
         mysql_query("INSERT INTO tbl_estudiantes(est_apodo, est_car_codigo, est_fecha_matricula, est_peri_consecutivo,est_per_consecutivoP) VALUES ('{$data["est_apodo"]}','{$data["est_car_codigo"]}',STR_TO_DATE('{$data["est_fecha_matricula"]}', '%d/%m/%Y'),{$data["est_peri_consecutivo"]},{$persona})");
-        
     }
 
     public static function retornar() {
@@ -31,6 +30,9 @@ class estudiantesM {
         mysql_query("UPDATE tbl_estudiantes SET est_apodo='{$data["est_apodo"]}', est_car_codigo = '{$data["est_car_codigo"]}',est_peri_consecutivo = {$data["est_peri_consecutivo"]}, est_fecha_matricula = STR_TO_DATE('{$data["est_fecha_matricula"]}', '%d/%m/%Y') WHERE est_per_consecutivoP='{$data["per_consecutivoP"]}'");
     }
 
+ public static function eliminar($est_per_consecutivoP){
+         mysql_query("DELETE FROM tbl_estudiantes WHERE est_per_consecutivoP=$est_per_consecutivoP");
+        personasM::eliminar($est_per_consecutivoP);
+    }
 }
-
 ?>

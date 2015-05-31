@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-05-2015 a las 09:50:26
+-- Tiempo de generación: 02-05-2015 a las 15:49:44
 -- Versión del servidor: 5.6.24
 -- Versión de PHP: 5.6.8
 
@@ -39,7 +39,8 @@ CREATE TABLE IF NOT EXISTS `tbl_carreras` (
 
 INSERT INTO `tbl_carreras` (`car_codigoP`, `car_nombre`, `car_valor_semestre`, `car_numero_semestres`) VALUES
 ('001', 'Sistemas ', 400000, 12),
-('002', 'ComunicaciÃ³n Social', 200000, 12);
+('002', 'ComunicaciÃ³n Social', 200000, 12),
+('003', 'Industrial', 2300, 10);
 
 -- --------------------------------------------------------
 
@@ -68,13 +69,6 @@ CREATE TABLE IF NOT EXISTS `tbl_docentes` (
   `doc_valor_hora` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `tbl_docentes`
---
-
-INSERT INTO `tbl_docentes` (`doc_per_consecutivoP`, `doc_oficina`, `doc_telefono_oficina`, `doc_categoria`, `doc_valor_hora`) VALUES
-(10, '2342423', '44546', 7, 455);
-
 -- --------------------------------------------------------
 
 --
@@ -95,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `tbl_estudiantes` (
 
 INSERT INTO `tbl_estudiantes` (`est_per_consecutivoP`, `est_apodo`, `est_car_codigo`, `est_fecha_matricula`, `est_peri_consecutivo`) VALUES
 (6, 'Gusano', '002', '2015-07-03 00:00:00', 1),
-(9, '76545', '001', '2015-06-05 00:00:00', 2);
+(11, 'Pineda', '002', '2015-05-28 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -117,6 +111,7 @@ CREATE TABLE IF NOT EXISTS `tbl_materias` (
 
 INSERT INTO `tbl_materias` (`mat_codigoP`, `mat_nombre`, `mat_descripcion`, `mat_cupos_maximo`, `mat_horas_semanales`) VALUES
 ('004', 'EspaÃ±ol', 'Muy buena materia', 30, 3),
+('243', 'Objetos', 'Es la de los sabados Ã‘@--345345Ãº', 15, 4),
 ('35', 'Matematicas', 'rwer', 34, 3);
 
 -- --------------------------------------------------------
@@ -135,15 +130,19 @@ CREATE TABLE IF NOT EXISTS `tbl_matriculas_materias` (
   `matmat_eva_nota_corte_1` double DEFAULT NULL,
   `matmat_eva_nota_corte_2` double DEFAULT NULL,
   `matmat_eva_nota_corte_3` double DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tbl_matriculas_materias`
 --
 
 INSERT INTO `tbl_matriculas_materias` (`matmat_consecutivoP`, `matmat_per_consecutivo`, `matmat_mat_codigo`, `matmat_per_consecutivo_docente`, `matmat_aula`, `matmat_peri_consecutivo`, `matmat_eva_nota_corte_1`, `matmat_eva_nota_corte_2`, `matmat_eva_nota_corte_3`) VALUES
-(1, 6, '35', NULL, '4', 1, 4, 6, 9),
-(2, 6, '004', NULL, '5', 1, 5, 9, 5);
+(1, 6, '35', NULL, '4', 1, 1, 6, 4),
+(2, 6, '004', NULL, '5', 1, 5, 9, 5),
+(3, 6, '004', NULL, '12', 2, 1, 4, 6),
+(4, 6, '004', 10, '', 1, NULL, 9, 6),
+(5, 11, '243', NULL, '10', 1, 2, 6, 1),
+(6, 11, '35', NULL, '14', 1, 12, 1, 8);
 
 -- --------------------------------------------------------
 
@@ -181,16 +180,16 @@ CREATE TABLE IF NOT EXISTS `tbl_personas` (
   `per_usu_nombre` varchar(100) DEFAULT NULL,
   `per_usu_contrasena` varchar(60) DEFAULT NULL,
   `per_identificacion` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tbl_personas`
 --
 
 INSERT INTO `tbl_personas` (`per_consecutivoP`, `per_nombre_completo`, `per_fecha_nacimiento`, `per_email`, `per_estado`, `per_usu_nombre`, `per_usu_contrasena`, `per_identificacion`) VALUES
-(6, 'Carlos Rodriguez', '2000-07-04 00:00:00', 'cpinda@q10soluciones.com', b'1', NULL, NULL, '353423'),
-(9, '345', '2015-05-09 00:00:00', '3453@sdf.sdf', b'1', NULL, NULL, 'erertfe'),
-(10, '345435', '2015-05-08 00:00:00', '435@fdg.dfg', b'1', NULL, NULL, '345');
+(6, 'Carlos Rodriguez', '2015-06-09 00:00:00', 'cpinda@q10soluciones.com', b'1', NULL, NULL, '353423'),
+(10, 'Pedro', '2015-05-08 00:00:00', '435@fdg.dfg', b'1', NULL, NULL, '345'),
+(11, 'Andres Pineda', '2015-05-06 00:00:00', 'anrdres@df.dfg', b'1', NULL, NULL, '1038575');
 
 --
 -- Índices para tablas volcadas
@@ -252,7 +251,7 @@ ALTER TABLE `tbl_personas`
 -- AUTO_INCREMENT de la tabla `tbl_matriculas_materias`
 --
 ALTER TABLE `tbl_matriculas_materias`
-  MODIFY `matmat_consecutivoP` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `matmat_consecutivoP` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `tbl_periodos`
 --
@@ -262,7 +261,7 @@ ALTER TABLE `tbl_periodos`
 -- AUTO_INCREMENT de la tabla `tbl_personas`
 --
 ALTER TABLE `tbl_personas`
-  MODIFY `per_consecutivoP` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+  MODIFY `per_consecutivoP` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- Restricciones para tablas volcadas
 --

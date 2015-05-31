@@ -18,9 +18,12 @@ class docentesM {
     }
     
     public static function modificar($data){
+        personasM::modificar($data);
+
         mysql_query("UPDATE tbl_docentes SET doc_oficina='{$data["doc_oficina"]}', doc_telefono_oficina = '{$data["doc_telefono_oficina"]}', doc_categoria = '{$data["doc_categoria"]}', doc_valor_hora = {$data["doc_valor_hora"]} WHERE doc_per_consecutivoP= {$data["per_consecutivoP"]}");
     }
     public static function eliminar($doc_per_consecutivoP){
-        mysql_query("DELETE FROM tbl_docentes WHERE doc_per_consecutivoP=$doc_per_consecutivoP");
+         mysql_query("DELETE FROM tbl_docentes WHERE doc_per_consecutivoP=$doc_per_consecutivoP");
+        personasM::eliminar($doc_per_consecutivoP);
     }
 }

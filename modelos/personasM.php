@@ -1,4 +1,5 @@
 <?php 
+
 class personasM {
     
     public static function ingresar($data){

@@ -60,7 +60,7 @@ require '../vistas/include/header.php';
                     <a href="estudiantes.php?action=modificar&id=<?php echo $estudiante["per_consecutivoP"]; ?>" class="openModal"> <i class="fa fa-edit"></i> Editar</a>
                     <a href="estudiantes.php?action=matricular&id=<?php echo $estudiante["per_consecutivoP"]; ?>" class="openModal"> <i class="fa fa-file-text-o"></i> Materias</a>
                     <a href="estudiantes.php?action=eliminar&id=<?php echo $estudiante["per_consecutivoP"]; ?>"><i class="fa fa-times-circle"></i> Eliminar</a>
-                    <a href="estudiantes.php?action=evaluar&id=<?php echo $estudiante["per_consecutivoP"]; ?>" class="openModal"><i class="fa fa-check"></i> Evaluar</a>
+                    <a href="estudiantes.php?action=evaluar&id=<?php echo $estudiante["per_consecutivoP"]; ?>"  style="display: block;" class="openModal"><i class="fa fa-check"></i> Evaluar</a>
                 </td>
             </tr>
         <?php } ?>

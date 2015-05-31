@@ -1,6 +1,6 @@
 <?php
 $tituloPagina = "Carreras";
-require '../vistas/include/header.php';
+View::load("include/header");
 ?>
 
 <div class="page-header text-center"><h3>Carreras</h3></div>
@@ -20,7 +20,7 @@ require '../vistas/include/header.php';
     </thead>
     <tbody>
 
-        <?php while ($carrera = mysql_fetch_assoc($datos)) {
+        <?php while ($carrera = $datos->fetch_assoc()) {
             ?>
             <tr>
 
@@ -45,20 +45,21 @@ require '../vistas/include/header.php';
                     ?>
                 </td>
                 <td>
-                    <a href="programas.php?action=modificar&id=<?php echo $carrera["car_codigoP"] ?>" class="openModal"> <i class="fa fa-edit"></i>Editar </a>                             
-                    <a href="programas.php?action=eliminar&id=<?php echo $carrera["car_codigoP"] ?>"><i class="fa fa-times-circle"></i>Eliminar </a>
-                    <a href="programas.php?action=crearpensum&id=<?php echo $carrera["car_codigoP"] ?>" class="openModal"> <i class="fa fa-file-text-o"></i>Agregar Materia</a>                             
+                    <a href="index.php?controller=programas&action=modificar&id=<?php echo $carrera["car_codigoP"] ?>" class="openModal"> <i class="fa fa-edit"></i>Editar </a>                             
+                    <a href="index.php?controller=programas&action=eliminar&id=<?php echo $carrera["car_codigoP"] ?>"><i class="fa fa-times-circle"></i>Eliminar </a>
+                    <!-- <a href="programas.php?action=crearpensum&id=<?php echo $carrera["car_codigoP"] ?>" class="openModal"> <i class="fa fa-file-text-o"></i>Agregar Materia</a>                             
                     <a href="programas.php?action=pensum&id=<?php echo $carrera["car_codigoP"] ?>" class="openModal"><i class="fa fa-tasks"></i>Pensum </a>
+                    -->
                 </td>
 
             </tr>        
-<?php } ?>
+        <?php } ?>
     </tbody>
 </table>
 <div class="text-right">                     
-    <a href="programas.php?action=ingresar" class="openModal btn btn-primary"> Crear </a>
+    <a href="index.php?controller=programas&action=ingresar" class="openModal btn btn-primary"> Crear </a>
 </div>
 
 <?php
-require '../vistas/include/footer.php';
+View::load("include/footer")
 ?>

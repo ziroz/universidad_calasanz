@@ -7,6 +7,7 @@
             <th class="text-center" style="width: 80px;">Corte 1</th>
             <th class="text-center" style="width: 80px;">Corte 2</th>
             <th class="text-center" style="width: 80px;">Corte 3</th>
+            <th class="text-center">Promedio</th>
         </tr>
     </thead>
     <tbody>
@@ -59,6 +60,7 @@
                         </div>
                     </div>
                 </td>
+                <td id="promedio_<?php echo $materia["matmat_consecutivoP"]; ?>" class="text-center"><?php echo $materia["matmat_nota_final"] ?></td>
             </tr>
         <?php } ?>
     </tbody>
@@ -105,15 +107,30 @@
             type: 'Post',
             dataType: "json",
             success: function (data) {
-                debugger;
 
                 $("#nota" + index + "_" + id).find("span").html(valor);
                 $("#nota" + index + "_" + id).show();
                 $("#nota" + index + "_" + id + "_edit").hide();
+                
+                ActualizarPromedio(id);
             }
         });
 
         e.preventDefault();
     });
+    
+    function ActualizarPromedio(id){
+        
+        $.ajax({
+            url: 'estudiantes.php?action=promedioMateria',
+            data: { matmat_consecutivoP: id },
+            type: 'Get',
+            dataType: "json",
+            success: function (data) {
+                debugger;
+                $("#promedio_" + id).html(data);
+            }
+        });
+    }
 
 </script>

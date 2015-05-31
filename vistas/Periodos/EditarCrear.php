@@ -1,4 +1,4 @@
-<input type="hidden" id="peri_consecutivoP" name="peri_consecutivoP" class="form-control" placeholder="Código Periodo" value="<?php echo $modelo['peri_consecutivoP']; ?>" />
+<input type="hidden" id="peri_consecutivoP" name="peri_consecutivoP" value="<?php echo $modelo['peri_consecutivoP']; ?>" />
 
 <div class='row'>
     <div class='col-lg-12'>
