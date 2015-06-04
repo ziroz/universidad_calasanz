@@ -4,26 +4,28 @@ class MasterModel {
 
     protected static $table;
     protected static $primary;
-
     static $link;
 
     public static function connect() {
-        static::$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASS, DB_DBASE);
+        static::$link = new PDO('mysql:host=' . DB_SERVER . ';dbname=' . DB_DBASE . ';charset=utf8', DB_USERNAME, DB_PASS);
     }
 
     public static function query($sql) {
-        static::connect();
-        $result = mysqli_query(static::$link, $sql) or die('Error executing : ' . $sql . " err:" . mysqli_errno(static::$link));
+        try {
+            static::connect();
+            $result = static::$link->query($sql);
+        } catch (PDOException $ex) {
+            die('Error executing : ' . $sql . " err:" . $ex);
+        }
         static::close();
-        return $result;
+        if($result)
+        {
+            return $result->fetchAll(PDO::FETCH_ASSOC);
+        }
     }
 
     public static function close() {
-        mysqli_close(static::$link);
-    }
-
-    public static function sanitize($sql) {
-        return addslashes($sql);
+        static::$link = null;
     }
 
     //CRUD FUNCTIONS 
@@ -33,12 +35,14 @@ class MasterModel {
     }
 
     public static function detailById($id, $fields = '*') {
-        
-        return static::query("SELECT " . $fields . " FROM " . static::$table . " WHERE ".static::$primary." = '".static::sanitize($id)."'");
+        ClearText::sanitize($id);
+        $detalle = static::query("SELECT " . $fields . " FROM " . static::$table . " WHERE " . static::$primary . " = '" . $id . "'");
+        return $detalle[0];
     }
 
     public static function deleteById($id) {
-        return static::query("DELETE FROM " . static::$table . " WHERE ".static::$primary." = '$id'");
+        ClearText::sanitize($id);
+        return static::query("DELETE FROM " . static::$table . " WHERE " . static::$primary . " = '$id'");
     }
 
 }

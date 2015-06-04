@@ -5,8 +5,8 @@ class programasM extends MasterModel implements InterfazModelos{
     static $table = 'tbl_carreras';
     static $primary = 'car_codigoP';
 
-
     public static function ingresar($data) {
+        ClearText::sanitize($data);
         static::query("INSERT INTO tbl_carreras(car_codigoP, car_nombre, car_valor_semestre, car_numero_semestres) VALUES ('{$data["car_codigoP"]}','{$data["car_nombre"]}',{$data["car_valor_semestre"]},{$data["car_numero_semestres"]})");
     }
 
@@ -16,10 +16,12 @@ class programasM extends MasterModel implements InterfazModelos{
 
     public static function detalleRetornar($id) {
         $detalle = static::detailById($id,"car_codigoP, car_nombre, car_valor_semestre, car_numero_semestres");
-        return $detalle->fetch_assoc();
+        return $detalle;
     }
 
     public static function modificar($data) {
+                ClearText::sanitize($data);
+
         static::query("UPDATE tbl_carreras SET car_nombre='{$data["car_nombre"]}', car_valor_semestre = {$data["car_valor_semestre"]}, car_numero_semestres = {$data["car_numero_semestres"]} WHERE car_codigoP='{$data["car_codigoP"]}'");
     }
 

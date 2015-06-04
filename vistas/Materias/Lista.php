@@ -1,6 +1,6 @@
 <?php
-$tituloPagina = "Materias";
-require '../vistas/include/header.php';
+$data['tituloPagina'] = "Materias";
+View::load("include/header");
 ?>
 
 <div class="page-header text-center"><h3>Materias</h3></div>
@@ -26,11 +26,10 @@ require '../vistas/include/header.php';
         </tr>
     </thead>
     <tbody>
-
-        <?php while ($materia = mysql_fetch_assoc($datos)) {
+        <?php foreach ($datos as $materia) {
             ?>
             <tr>
- 
+
                 <td>
                     <?php
                     echo $materia['mat_codigoP']
@@ -57,18 +56,18 @@ require '../vistas/include/header.php';
                     ?>
                 </td>
                 <td>
-                    <a href="materias.php?action=modificar&id=<?php echo $materia["mat_codigoP"] ?>" class="openModal"> <i class="fa fa-edit"></i>Editar</a>                             
-                    <a href="materias.php?action=eliminar&id=<?php echo $materia["mat_codigoP"] ?>"><i class="fa fa-times-circle"></i>Eliminar </a>
+                    <a href="<?php echo Url::getUrl("materias", "modificar",["id"=>$materia["mat_codigoP"]]); ?>" class="openModal"> <i class="fa fa-edit"></i>Editar </a>                             
+                    <a href="<?php echo Url::getUrl("materias", "eliminar",["id"=>$materia["mat_codigoP"]]); ?>"><i class="fa fa-times-circle"></i>Eliminar </a>
                 </td>
 
             </tr>        
-<?php } ?>
+        <?php } ?>
     </tbody>
 </table>
 <div class="text-right">                     
-    <a href="materias.php?action=ingresar" class="openModal btn btn-primary"> Crear </a>
+    <a href="<?php echo Url::getUrl("materias", "ingresar"); ?>" class="openModal btn btn-primary"> Crear </a>
 </div>
 
 <?php
-require '../vistas/include/footer.php';
+View::load("include/footer")
 ?>

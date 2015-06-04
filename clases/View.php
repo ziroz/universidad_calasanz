@@ -7,7 +7,8 @@ class View {
         require "./" . BASE_VIEWS . "/$path.php";
     }
 
-    public static function loadModal() {
+    public static function loadModal($data) {
+        extract($data);   //every key now is a variable :)
         require "./" . BASE_VIEWS . "/include/modal.php";
     }
 

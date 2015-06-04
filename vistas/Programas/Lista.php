@@ -1,6 +1,6 @@
 <?php
-$tituloPagina = "Carreras";
-View::load("include/header");
+$data['tituloPagina'] = "Carreras";
+View::load("include/header",$data);
 ?>
 
 <div class="page-header text-center"><h3>Carreras</h3></div>
@@ -20,7 +20,7 @@ View::load("include/header");
     </thead>
     <tbody>
 
-        <?php while ($carrera = $datos->fetch_assoc()) {
+        <?php foreach ($datos as $carrera) {
             ?>
             <tr>
 
@@ -45,8 +45,8 @@ View::load("include/header");
                     ?>
                 </td>
                 <td>
-                    <a href="index.php?controller=programas&action=modificar&id=<?php echo $carrera["car_codigoP"] ?>" class="openModal"> <i class="fa fa-edit"></i>Editar </a>                             
-                    <a href="index.php?controller=programas&action=eliminar&id=<?php echo $carrera["car_codigoP"] ?>"><i class="fa fa-times-circle"></i>Eliminar </a>
+                    <a href="<?php echo Url::getUrl("programas", "modificar", ['id'=>$carrera["car_codigoP"]]); ?>" class="openModal"> <i class="fa fa-edit"></i>Editar </a>                             
+                    <a href="<?php echo Url::getUrl("eliminar", "modificar", ['id'=>$carrera["car_codigoP"]]); ?>"><i class="fa fa-times-circle"></i>Eliminar </a>
                     <!-- <a href="programas.php?action=crearpensum&id=<?php echo $carrera["car_codigoP"] ?>" class="openModal"> <i class="fa fa-file-text-o"></i>Agregar Materia</a>                             
                     <a href="programas.php?action=pensum&id=<?php echo $carrera["car_codigoP"] ?>" class="openModal"><i class="fa fa-tasks"></i>Pensum </a>
                     -->
@@ -57,7 +57,7 @@ View::load("include/header");
     </tbody>
 </table>
 <div class="text-right">                     
-    <a href="index.php?controller=programas&action=ingresar" class="openModal btn btn-primary"> Crear </a>
+    <a href="<?php echo Url::getUrl("programas", "ingresar"); ?>" class="openModal btn btn-primary"> Crear </a>
 </div>
 
 <?php

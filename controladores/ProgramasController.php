@@ -3,76 +3,55 @@
 class ProgramasController extends MasterController {
 
     public function getIndex() {
-        $tituloPagina = "Programas";
-        $datos = programasM::retornar();
-        require './vistas/Programas/Lista.php';
+        $data['tituloPagina'] = "Programas";
+        $data['datos'] = programasM::retornar();
 
-//        View::load("Programas/Lista");
+        View::load("Programas/Lista", $data);
     }
 
     public function getIngresar() {
 
         $data['modalBody'] = './' . BASE_VIEWS . '/Programas/EditarCrear.php';
-        $data['formAction'] = 'index.php?controller=programas&action=ingresar';
+        $data['formAction'] = Url::getUrl("programas", "ingresar");
         $data['tituloModal'] = 'Crear Carrera';
 
-        $modelo = [
+        $data['data'] = $data;
+
+        $data['modelo'] = [
             "car_codigoP" => "",
             "car_nombre" => "",
             "car_valor_semestre" => "",
             "car_numero_semestres" => ""
         ];
 
-        require "./vistas/include/modal.php";
+        View::loadModal($data);
     }
 
     public function postIngresar($request) {
         programasM::ingresar($request);
-        Redirect::to("index.php?controller=programas&action=index");
+        Redirect::to(Url::getUrl("programas", "index"));
     }
 
     public function getModificar($id) {
         $data['modalBody'] = './' . BASE_VIEWS . '/Programas/EditarCrear.php';
-        $data['formAction'] = 'index.php?controller=programas&action=modificar';
+        $data['formAction'] = Url::getUrl("programas", "modificar");
         $data['tituloModal'] = 'Modificar Carrera';
 
-        $modelo = programasM::detalleRetornar($_GET["id"]);
-        require "./vistas/include/modal.php";
+        $data['data'] = $data;
+
+        $data['modelo'] = programasM::detalleRetornar($_GET["id"]);
+        View::loadModal($data);
     }
 
     public function postModificar($request) {
         programasM::modificar($request);
-        Redirect::to("index.php?controller=programas&action=index");
+        Redirect::to(Url::getUrl("programas", "index"));
     }
 
     public function getEliminar($request) {
         programasM::eliminar($request["id"]);
-        Redirect::to("index.php?controller=programas&action=index");
+        Redirect::to(Url::getUrl("programas", "index"));
     }
-
 }
 
-//
-//if (isset($_GET['action'])) {
-//    $action = $_GET["action"];
-//    $isPost = $_SERVER['REQUEST_METHOD'] === 'POST';
-//
-//    if ($action == "pensum") {
-//
-//        $data['modalBody'] = '../vistas/Programas/MateriasCarrera';
-//        $data['tituloModal'] = 'Pensum';
-//
-//        require '../vistas/include/modalSimple.php';
-//    } else
-//    if ($action == "crearpensum") {
-//
-//        $data['modalBody'] = '../vistas/Programas/CrearMateriaPensum.php';
-//        $data['formAction'] = 'programas.php?action=crearpensum';
-//        $data['tituloModal'] = 'Agregar Materia Pensum';
-//
-//        require '../vistas/include/modal.php';
-//    }
-//} else {
-//    
-//}
 ?>

@@ -8,15 +8,16 @@ class MasterController {
     static function init() {
         //load the application's controllers/classes/models.       
         require './config/boot.php';
+        session_start();
     }
 
     static function execute($request) {
-        static::init();        
-        
-        if (!static::isValidRequest($request)) {            
-            App::abort(0);
-        }        
+                static::init();        
 
+        if (!static::isValidRequest($request)) {            
+            App::abort(404);
+        }
+        
         $controller = ucfirst($request['controller']) . ucfirst(static::$controllerSuffix);
         $action = isset($request['action']) ? $request['action'] : static::$defaultMethod;
 
@@ -25,15 +26,21 @@ class MasterController {
 
         $method = ($isPost) ? 'post' : 'get';
         $method.= ucfirst($action);
-
-
+        
         //create a new object and call the respective method
+        if(class_exists($controller) && method_exists(new $controller(), $method)){
+            
+            Session::validatePermission($request['controller'],$action);
+        }else{
+            App::abort(404);
+        }
+        
         $ctr = new $controller();
         $ctr->{$method}(static::getParams($request));
     }
 
-    static function isValidRequest($request) {        
-        return isset($request['controller']) ;
+    static function isValidRequest($request) {    
+        return isset($request['controller']);
     }   
     
     

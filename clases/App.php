@@ -1,18 +1,21 @@
 <?php
 
-class App{
+class App {
 
     static function abort($code) {
 
         switch ($code) {
             case 0:
-                echo 'Invalid Request';
+                Redirect::to('vistas/Shared/Error400.php');
                 break;
             case 404:
-                echo 'Not found';
+                Redirect::to('vistas/shared/Error404.php');
+                break;
+            case 401:
+                Redirect::to('vistas/shared/Error401.php');
                 break;
         }
-        
+
         exit;
     }
 
