@@ -6,6 +6,7 @@ class estudiantesM extends MasterModel implements InterfazModelos{
     static $primary = 'est_per_consecutivoP';
 
     public static function ingresar($data) {
+        $data["rol"] = 1;
         $persona = personasM::ingresar($data);
         static::query("INSERT INTO tbl_estudiantes(est_apodo, est_car_codigo, est_fecha_matricula, est_peri_consecutivo,est_per_consecutivoP) VALUES ('{$data["est_apodo"]}','{$data["est_car_codigo"]}',STR_TO_DATE('{$data["est_fecha_matricula"]}', '%d/%m/%Y'),{$data["est_peri_consecutivo"]},{$persona["id"]})");
     }

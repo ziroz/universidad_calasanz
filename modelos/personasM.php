@@ -6,7 +6,7 @@ class personasM extends MasterModel implements InterfazModelos{
     static $primary = 'car_codigoP';
     
     public static function ingresar($data){
-       static::query("INSERT INTO tbl_personas(per_identificacion, per_nombre_completo, per_fecha_nacimiento, per_email, per_estado) VALUES ('{$data["per_identificacion"]}','{$data["per_nombre_completo"]}',STR_TO_DATE('{$data["per_fecha_nacimiento"]}', '%d/%m/%Y'),'{$data["per_email"]}','1')");  
+       static::query("INSERT INTO tbl_personas(per_identificacion, per_nombre_completo, per_fecha_nacimiento, per_email, per_estado, per_rol) VALUES ('{$data["per_identificacion"]}','{$data["per_nombre_completo"]}',STR_TO_DATE('{$data["per_fecha_nacimiento"]}', '%d/%m/%Y'),'{$data["per_email"]}','1',{$data["rol"]})");  
        
        $detalle = static::query("SELECT MAX(per_consecutivoP) as id from tbl_personas");
        return $detalle[0];
