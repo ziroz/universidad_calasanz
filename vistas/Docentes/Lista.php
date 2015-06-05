@@ -1,6 +1,6 @@
 <?php
-$tituloPagina = "Docentes";
-require '../vistas/include/header.php';
+$data['tituloPagina'] = "Docentes";
+View::load("include/header",$data);
 ?>
 
 <div class="page-header text-center"><h3>Docentes</h3></div>
@@ -32,7 +32,7 @@ require '../vistas/include/header.php';
         </tr>
     </thead>
     <tbody>
-        <?php while ($docente = mysql_fetch_assoc($datos)) {
+         <?php foreach ($datos as $docente) {
             ?>
             <tr>
                 <td>
@@ -53,22 +53,22 @@ require '../vistas/include/header.php';
                 <td>
                     <?php echo $docente["doc_categoria"]; ?>
                 </td>
-                <td>
+                <td class="currency">
                     <?php echo $docente["doc_valor_hora"]; ?>
                 </td>
                 <td>
-                    <a href="docentes.php?action=modificar&id=<?php echo $docente["per_consecutivoP"]; ?>" class="openModal"> <i class="fa fa-edit"></i> Editar</a>
-                    <a href="docentes.php?action=eliminar&id=<?php echo $docente["per_consecutivoP"]; ?>"><i class="fa fa-times-circle"></i> Eliminar</a>
-                </td>
+                    <a href="<?php echo Url::getUrl("docentes", "modificar", ['id'=>$docente["doc_per_consecutivoP"]]); ?>" class="openModal"> <i class="fa fa-edit"></i>Editar </a>                             
+                    <a href="<?php echo Url::getUrl("docentes", "eliminar", ['id'=>$docente["doc_per_consecutivoP"]]); ?>"><i class="fa fa-times-circle"></i>Eliminar </a>
+         </td>
             </tr>
         <?php } ?>
 
     </tbody>
 </table>
 <div class="text-right">                     
-    <a href="docentes.php?action=ingresar" class="openModal btn btn-primary"> Crear </a>
+    <a href="<?php echo Url::getUrl("docentes", "ingresar"); ?>" class="openModal btn btn-primary"> Crear </a>
 </div>
 
 <?php
-require '../vistas/include/footer.php';
+View::load("include/footer")
 ?>

@@ -5,7 +5,7 @@ class Session {
     private static $PermisosRoles = [
         "Docentes" => [],
         "Estudiante" => [],
-        "Administrativo" => ['programas', 'materias', 'periodos', 'seguridad']
+        "Administrativo" => ['programas', 'materias', 'periodos', 'seguridad','docentes','estudiantes']
     ];
 
     public static function validatePermission($controller,$action) {

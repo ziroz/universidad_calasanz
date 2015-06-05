@@ -46,8 +46,10 @@ View::load("include/header",$data);
                 </td>
                 <td>
                     <a href="<?php echo Url::getUrl("programas", "modificar", ['id'=>$carrera["car_codigoP"]]); ?>" class="openModal"> <i class="fa fa-edit"></i>Editar </a>                             
+                    <a href="<?php echo Url::getUrl("programas", "eliminar", ['id'=>$carrera["car_codigoP"]]); ?>"><i class="fa fa-times-circle"></i>Eliminar </a>
+                    <!-- <a href="pr <a href="<?php echo Url::getUrl("programas", "modificar", ['id'=>$carrera["car_codigoP"]]); ?>" class="openModal"> <i class="fa fa-edit"></i>Editar </a>                             
                     <a href="<?php echo Url::getUrl("eliminar", "modificar", ['id'=>$carrera["car_codigoP"]]); ?>"><i class="fa fa-times-circle"></i>Eliminar </a>
-                    <!-- <a href="programas.php?action=crearpensum&id=<?php echo $carrera["car_codigoP"] ?>" class="openModal"> <i class="fa fa-file-text-o"></i>Agregar Materia</a>                             
+                 ogramas.php?action=crearpensum&id=<?php echo $carrera["car_codigoP"] ?>" class="openModal"> <i class="fa fa-file-text-o"></i>Agregar Materia</a>                             
                     <a href="programas.php?action=pensum&id=<?php echo $carrera["car_codigoP"] ?>" class="openModal"><i class="fa fa-tasks"></i>Pensum </a>
                     -->
                 </td>

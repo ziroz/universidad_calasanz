@@ -1,6 +1,6 @@
 <?php
-$tituloPagina = "Estudiantes";
-require '../vistas/include/header.php';
+$data['tituloPagina'] = "Estudiantes";
+View::load("include/header",$data);
 ?>
 
 <div class="page-header text-center"><h3>Estudiantes</h3></div>
@@ -32,7 +32,7 @@ require '../vistas/include/header.php';
         </tr>
     </thead>
     <tbody>
-        <?php while ($estudiante = mysql_fetch_assoc($datos)) {
+         <?php foreach ($datos as $estudiante) {
             ?>
             <tr>
                 <td>
@@ -57,10 +57,10 @@ require '../vistas/include/header.php';
                     <?php echo $estudiante["est_fecha_matricula"]; ?>
                 </td>
                 <td>
-                    <a href="estudiantes.php?action=modificar&id=<?php echo $estudiante["per_consecutivoP"]; ?>" class="openModal"> <i class="fa fa-edit"></i> Editar</a>
-                    <a href="estudiantes.php?action=matricular&id=<?php echo $estudiante["per_consecutivoP"]; ?>" class="openModal"> <i class="fa fa-file-text-o"></i> Materias</a>
-                    <a href="estudiantes.php?action=eliminar&id=<?php echo $estudiante["per_consecutivoP"]; ?>"><i class="fa fa-times-circle"></i> Eliminar</a>
-                    <a href="estudiantes.php?action=evaluar&id=<?php echo $estudiante["per_consecutivoP"]; ?>"  style="display: block;" class="openModal"><i class="fa fa-check"></i> Evaluar</a>
+                    <a href="<?php echo Url::getUrl("estudiantes", "modificar", ['id'=>$estudiante["est_per_consecutivoP"]]); ?>" class="openModal"> <i class="fa fa-edit"></i>Editar </a>                             
+                    <a href="<?php echo Url::getUrl("estudiantes", "eliminar", ['id'=>$estudiante["est_per_consecutivoP"]]); ?>"><i class="fa fa-times-circle"></i>Eliminar </a>
+                    <a href="<?php echo Url::getUrl("estudiantes", "matricular", ['id'=>$estudiante["est_per_consecutivoP"]]); ?>" class="openModal"> <i class="fa fa-edit"></i>Materias </a>                             
+                    <a href="<?php echo Url::getUrl("estudiantes", "evaluar", ['id'=>$estudiante["est_per_consecutivoP"]]); ?>"><i  style="display: block;" class="fa fa-times-circle"></i>Evaluar </a>  
                 </td>
             </tr>
         <?php } ?>
@@ -68,9 +68,9 @@ require '../vistas/include/header.php';
     </tbody>
 </table>
 <div class="text-right">                     
-    <a href="estudiantes.php?action=ingresar" class="openModal btn btn-primary"> Crear </a>
+    <a href="<?php echo Url::getUrl("estudiantes", "ingresar"); ?>" class="openModal btn btn-primary"> Crear </a>
 </div>
 
 <?php
-require '../vistas/include/footer.php';
+View::load("include/footer")
 ?>

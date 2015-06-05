@@ -1,8 +1,7 @@
 <?php
-$tituloPagina = "Periodos";
-require '../vistas/include/header.php';
+$data['tituloPagina'] = "Periodos";
+View::load("include/header",$data);
 ?>
-
 <div class="page-header text-center"><h3>Periodos</h3></div>
 <table class="table table-responsive table-striped table-hover" >
     <thead>
@@ -21,7 +20,7 @@ require '../vistas/include/header.php';
     </thead>
     <tbody>
 
-        <?php while ($periodo = mysql_fetch_assoc($datos)) {
+       <?php foreach ($datos as $periodo) {
             ?>
             <tr>
  
@@ -41,18 +40,18 @@ require '../vistas/include/header.php';
                     ?>
                 </td>               
                 <td>
-                    <a href="periodos.php?action=modificar&id=<?php echo $periodo["peri_consecutivoP"] ?>" class="openModal"> <i class="fa fa-edit"></i>Editar</a>                             
-                    <a href="periodos.php?action=eliminar&id=<?php echo $periodo["peri_consecutivoP"] ?>"><i class="fa fa-times-circle"></i>Eliminar </a>
-                </td>
+                   <a href="<?php echo Url::getUrl("periodos", "modificar", ['id'=>$periodo["peri_consecutivoP"]]); ?>" class="openModal"> <i class="fa fa-edit"></i>Editar </a>                             
+                    <a href="<?php echo Url::getUrl("periodos", "eliminar", ['id'=>$periodo["peri_consecutivoP"]]); ?>"><i class="fa fa-times-circle"></i>Eliminar </a>
+                    </td>
 
             </tr>        
 <?php } ?>
     </tbody>
 </table>
 <div class="text-right">                     
-    <a href="periodos.php?action=ingresar" class="openModal btn btn-primary"> Crear </a>
+    <a href="<?php echo Url::getUrl("periodos", "ingresar"); ?>" class="openModal btn btn-primary"> Crear </a>
 </div>
 
 <?php
-require '../vistas/include/footer.php';
+View::load("include/footer")
 ?>
