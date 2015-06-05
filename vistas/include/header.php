@@ -25,8 +25,12 @@ $rutaAssest = 'vistas/assets';
 </head>
 <body>
     <div id="modal-main" class="modal fade in"></div>
+    
     <?php
-    require 'menu.php';
+    if(!isset($sinMenu))
+    {
+        View::load("include/menu");
+    }
     ?>
     <div class='container'> 
         <div class='row'>

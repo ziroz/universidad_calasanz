@@ -14,7 +14,6 @@ class SeguridadController extends MasterController {
     }
 
     public function postLogin($request) {
-
         $usuario = seguridadM::retornar($request);
         if (count($usuario) > 0) {
             Session::initSesion($usuario);
@@ -26,6 +25,11 @@ class SeguridadController extends MasterController {
         } else {
             Redirect::to(Url::getUrl("seguridad", "login"));
         }
+    }
+
+    public function postClose() {
+        Session::closeSesion();
+        Redirect::to(Url::getUrl("Seguridad", "Login"));
     }
 
 }

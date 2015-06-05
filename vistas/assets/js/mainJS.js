@@ -59,9 +59,14 @@ fici = {
 $(document).ready(function () {
     
     $("body").on("click", "a.openModal", function (e) {
-        e.preventDefault();
         fici.abrirModal($(this).attr("href"));
-    })
+        e.preventDefault();
+    });
     
-    $('ul.nav a[href="'+ window.location +'"]').parent().addClass('active');
+    $("body").on("click", "a.closeSesion", function (e) {
+        $("form#cerrarSesion").submit();
+        e.preventDefault();
+    });
+    
+    $('ul.nav a[href$="'+ window.location.search +'"]').parent().addClass('active');
 });

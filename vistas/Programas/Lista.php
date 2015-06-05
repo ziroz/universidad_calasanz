@@ -1,6 +1,6 @@
 <?php
 $data['tituloPagina'] = "Carreras";
-View::load("include/header",$data);
+View::load("include/header", $data);
 ?>
 
 <div class="page-header text-center"><h3>Carreras</h3></div>
@@ -19,9 +19,7 @@ View::load("include/header",$data);
         </tr>
     </thead>
     <tbody>
-
-        <?php foreach ($datos as $carrera) {
-            ?>
+        <?php foreach ($datos as $carrera) { ?>
             <tr>
 
                 <td>
@@ -45,11 +43,10 @@ View::load("include/header",$data);
                     ?>
                 </td>
                 <td>
-                    <a href="<?php echo Url::getUrl("programas", "modificar", ['id'=>$carrera["car_codigoP"]]); ?>" class="openModal"> <i class="fa fa-edit"></i>Editar </a>                             
-                    <a href="<?php echo Url::getUrl("programas", "eliminar", ['id'=>$carrera["car_codigoP"]]); ?>"><i class="fa fa-times-circle"></i>Eliminar </a>
-                    <!-- <a href="pr <a href="<?php echo Url::getUrl("programas", "modificar", ['id'=>$carrera["car_codigoP"]]); ?>" class="openModal"> <i class="fa fa-edit"></i>Editar </a>                             
-                    <a href="<?php echo Url::getUrl("eliminar", "modificar", ['id'=>$carrera["car_codigoP"]]); ?>"><i class="fa fa-times-circle"></i>Eliminar </a>
-                 ogramas.php?action=crearpensum&id=<?php echo $carrera["car_codigoP"] ?>" class="openModal"> <i class="fa fa-file-text-o"></i>Agregar Materia</a>                             
+                    <a href="<?php echo Url::getUrl("programas", "modificar", ['id' => $carrera["car_codigoP"]]); ?>" class="openModal"> <i class="fa fa-edit"></i>Editar </a>                             
+                    <a href="<?php echo Url::getUrl("programas", "eliminar", ['id' => $carrera["car_codigoP"]]); ?>"><i class="fa fa-times-circle"></i>Eliminar </a>
+                    <a href="<?php echo Url::getUrl("programasMaterias", "ingresar", ['id' => $carrera["car_codigoP"]]); ?>" class="openModal"><i class="fa fa-sitemap"></i>Materias </a>
+                    <!-- <a href="programas.php?action=crearpensum&id=<?php echo $carrera["car_codigoP"] ?>" class="openModal"> <i class="fa fa-file-text-o"></i>Agregar Materia</a>                             
                     <a href="programas.php?action=pensum&id=<?php echo $carrera["car_codigoP"] ?>" class="openModal"><i class="fa fa-tasks"></i>Pensum </a>
                     -->
                 </td>

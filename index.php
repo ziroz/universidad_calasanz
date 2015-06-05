@@ -28,11 +28,14 @@ class MasterController {
         $method.= ucfirst($action);
         
         //create a new object and call the respective method
-        if(class_exists($controller) && method_exists(new $controller(), $method)){
-            
-            Session::validatePermission($request['controller'],$action);
-        }else{
-            App::abort(404);
+        if($request['controller'] != "seguridad")
+        {
+            if(class_exists($controller) && method_exists(new $controller(), $method)){
+                
+                Session::validatePermission($request['controller'],$action);
+            }else{
+                App::abort(404);
+            }
         }
         
         $ctr = new $controller();

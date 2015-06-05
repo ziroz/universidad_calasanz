@@ -1,3 +1,4 @@
+
 <?php
 
 class Session {
@@ -5,23 +6,30 @@ class Session {
     private static $PermisosRoles = [
         "Docentes" => [],
         "Estudiante" => [],
-        "Administrativo" => ['programas', 'materias', 'periodos', 'seguridad','docentes','estudiantes']
+        "Administrativo" => ['programas', 'materias', 'periodos','estudiantes','docentes', 'seguridad','programasmaterias']
     ];
 
     public static function validatePermission($controller,$action) {
         $usuario = Session::getUser();
         
         if(count($usuario)==0){
-            if($controller !=="Seguridad")
+            if($action != "Login")
             {
-                Redirect::to(Url::getUrl("Seguridad", "Login", ['returnUrl'=>  urlencode(Url::getUrl($controller, $action))]));
+                $urlReturn = $controller == "Seguridad" ? "" : urlencode(Url::getUrl($controller, $action));
+                Redirect::to(Url::getUrl("Seguridad", "Login", ['returnUrl'=> $urlReturn ]));
             }
         }else{
-            $permisos = static::$PermisosRoles[$usuario["rol"]];
-            if(!in_array(strtolower($controller), $permisos)){
+            if(!static::hasPermission($controller)){
                 App::abort(404);
             }
         }
+    }
+    
+    public static function hasPermission($controller) {
+        $usuario = Session::getUser();
+        $permisos = static::$PermisosRoles[$usuario["rol"]];
+
+        return in_array(strtolower($controller), $permisos);
     }
 
     public static function initSesion($persona) {
@@ -37,3 +45,5 @@ class Session {
     }
 
 }
+
+?>
