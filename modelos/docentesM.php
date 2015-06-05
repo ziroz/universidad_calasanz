@@ -7,6 +7,7 @@ class docentesM extends MasterModel implements InterfazModelos{
 
     
     public static function ingresar($data){
+        $data["rol"] = 2;
         $persona = personasM::ingresar($data);
         static::query("INSERT INTO tbl_docentes(doc_per_consecutivoP, doc_oficina, doc_telefono_oficina, doc_categoria, doc_valor_hora) VALUES ('{$persona["id"]}','{$data["doc_oficina"]}','{$data["doc_telefono_oficina"]}','{$data["doc_categoria"]}',{$data["doc_valor_hora"]})");  
     }
