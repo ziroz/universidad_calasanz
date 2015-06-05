@@ -12,11 +12,11 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="programas.php">Carreras</a></li>
-                <li><a href="periodos.php">Períodos</a></li>
-                <li><a href="materias.php">Materias</a></li>
-                <li><a href="docentes.php">Docentes</a></li>
-                <li><a href="estudiantes.php">Estudiantes</a></li>
+                <li><a href="<?php echo Url::getUrl("programas", "index"); ?>">Carreras</a></li>
+                <li><a href="<?php echo Url::getUrl("periodos", "index"); ?>">Períodos</a></li>
+                <li><a href="<?php echo Url::getUrl("materias", "index"); ?>">Materias</a></li>
+                <li><a href="<?php echo Url::getUrl("docentes", "index"); ?>">Docentes</a></li>
+                <li><a href="<?php echo Url::getUrl("estudiantes", "index"); ?>">Estudiantes</a></li>
                 <!--<li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" >Dropdown <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
@@ -30,8 +30,14 @@
                     </ul>
                 </li>-->
             </ul>
+            <form id="cerrarSesion" action="<?php echo Url::getUrl("Seguridad", "close"); ?>" method="post"></form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="../login.html">Cerrar Sesión</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" ><?php echo Session::getUser()['per_nombre_completo'] ?> <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#" class="closeSesion">Cerrar Sesión</a></li>
+                    </ul>
+                </li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>

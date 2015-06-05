@@ -4,7 +4,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title"><?php echo $data['tituloModal']; ?></h4>
         </div>
-        <form action="<?php echo $data['formAction']; ?>" method="post">
+        <form id="formModal" action="<?php echo $data['formAction']; ?>" method="post">
             <div class="modal-body">
                 <?php require $data['modalBody'];?>
             </div>

@@ -26,7 +26,7 @@ class programasM extends MasterModel implements InterfazModelos{
     }
 
     public static function eliminar($id) {
-        static::deleteById($id);
+        static::deleteById($id);    
     }
 }
 
