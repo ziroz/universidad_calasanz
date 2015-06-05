@@ -3,7 +3,7 @@
 define("DB_SERVER", 'localhost');
 define("DB_USERNAME", 'root');
 define("DB_PASS", ''); 
-define("DB_DBASE", 'uni_calasaz');
+define("DB_DBASE", 'db_uni_calasaz');
 
 //-----------DO NOT CHANGE ------------------------
 

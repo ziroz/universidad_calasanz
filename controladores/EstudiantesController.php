@@ -1,4 +1,5 @@
 <?php
+
 class EstudiantesController extends MasterController {
 
     public function getIndex() {
@@ -17,16 +18,16 @@ class EstudiantesController extends MasterController {
         $data['data'] = $data;
 
         $data['modelo'] = [
-                "est_per_consecutivoP" => "",
-                "per_nombre_completo" => "",
-                "per_identificacion" => "",
-                "per_fecha_nacimiento" => "",
-                "per_email" => "",
-                "per_estado" => "",
-                "est_apodo" => "",
-                "est_car_codigo" => "",
-                "est_fecha_matricula" => "",
-                "est_peri_consecutivo" => "",
+            "est_per_consecutivoP" => "",
+            "per_nombre_completo" => "",
+            "per_identificacion" => "",
+            "per_fecha_nacimiento" => "",
+            "per_email" => "",
+            "per_estado" => "",
+            "est_apodo" => "",
+            "est_car_codigo" => "",
+            "est_fecha_matricula" => "",
+            "est_peri_consecutivo" => "",
         ];
         $data['programas'] = programasM::retornar();
         $data['periodos'] = periodosM::retornar();
@@ -60,95 +61,36 @@ class EstudiantesController extends MasterController {
         estudiantesM::eliminar($request["id"]);
         Redirect::to(Url::getUrl("estudiantes", "index"));
     }
-}
 
-//
-//if (isset($_GET['action'])) {
-//    $action = $_GET["action"];
-//    $isPost = $_SERVER['REQUEST_METHOD'] === 'POST';
-//
-//    if ($action == "ingresar") {
-//
-//        if ($isPost) {
-//            estudiantesM::ingresar($_POST);
-//
-//            header('Location:estudiantes.php');
-//        } else {
-//
-//            $data['modalBody'] = '../vistas/Estudiantes/EditarCrear.php';
-//            $data['formAction'] = 'estudiantes.php?action=ingresar';
-//            $data['tituloModal'] = 'Crear Estudiante';
-//
-//            $modelo = [
-//                "per_consecutivoP" => "",
-//                "per_nombre_completo" => "",
-//                "per_identificacion" => "",
-//                "per_fecha_nacimiento" => "",
-//                "per_email" => "",
-//                "per_estado" => "",
-//                "est_apodo" => "",
-//                "est_car_codigo" => "",
-//                "est_fecha_matricula" => "",
-//                "est_peri_consecutivo" => "",
-//            ];
-//
-//            $programas = programasM::retornar();
-//            $periodos = periodosM::retornar();
-//
-//            require '../vistas/include/modal.php';
-//        }
-//    } else
-//    if ($action == "modificar") {
-//        if ($isPost) {
-//
-//            estudiantesM::modificar($_POST);
-//
-//            header('Location:estudiantes.php');
-//        } else {
-//
-//            $data['modalBody'] = '../vistas/Estudiantes/EditarCrear.php';
-//            $data['formAction'] = 'estudiantes.php?action=modificar';
-//            $data['tituloModal'] = 'Modificar Estudiante';
-//
-//            $modelo = estudiantesM::detalleRetornar($_GET["id"]);
-//
-//            $programas = programasM::retornar();
-//            $periodos = periodosM::retornar();
-//
-//            require '../vistas/include/modal.php';
-//        }
-//    } else
-//    if ($action == "eliminar") {
-//
-//        estudiantesM::eliminar($_GET["id"]);
-//
-//        header('Location:estudiantes.php');
-//    } else
-//    if ($action == "matricular") {
-//        if ($isPost) {
-//            matriculasMateriasM::ingresar($_POST);
-//
-//            header('Location:estudiantes.php');
-//        } else {
-//
-//            $data['modalBody'] = '../vistas/Estudiantes/MatricularMateria.php';
-//            $data['formAction'] = 'estudiantes.php?action=matricular';
-//            $data['tituloModal'] = 'Matricular Materia';
-//
-//            $modelo = [
-//                "matmat_per_consecutivo" => $_GET["id"],
-//                "matmat_mat_codigo" => "",
-//                "matmat_per_consecutivo_docente" => "",
-//                "matmat_aula" => "56",
-//                "matmat_peri_consecutivo" => "",
-//            ];
-//
-//            $materias = materiasM::retornar();
-//            $periodos = periodosM::retornar();
-//            $docentes = docentesM::retornar();
-//
-//            require '../vistas/include/modal.php';
-//        }
+    public function getMatricular($request) {
+        $data['modalBody'] = './' . BASE_VIEWS . '/Estudiantes/MatricularMateria.php';
+
+        $data['formAction'] = Url::getUrl("estudiantes", "matricular");
+        $data['tituloModal'] = 'Matricular Materia';
+
+        $data['data'] = $data;
+
+        $data['modelo'] = [
+            "matmat_per_consecutivo" => $request["id"],
+            "matmat_mat_codigo" => "",
+            "matmat_per_consecutivo_docente" => "",
+            "matmat_aula" => "",
+            "matmat_peri_consecutivo" => "",
+        ];
+
+        $data['materias'] = materiasM::retornar();
+        $data['periodos'] = periodosM::retornar();
+        $data['docentes'] = docentesM::retornar();
+
+        View::loadModal($data);
+    }
+
+    public function postMatricular($request) {
+        matriculasMateriasM::ingresar($request);
+        Redirect::to(Url::getUrl("estudiantes", "index"));
+    }
+
+}
 //    } else
 //    if ($action == "evaluar") {
 //        if($isPost){
