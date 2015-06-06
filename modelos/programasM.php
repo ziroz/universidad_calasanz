@@ -20,8 +20,7 @@ class programasM extends MasterModel implements InterfazModelos{
     }
 
     public static function modificar($data) {
-                ClearText::sanitize($data);
-
+        ClearText::sanitize($data);
         static::query("UPDATE tbl_carreras SET car_nombre='{$data["car_nombre"]}', car_valor_semestre = {$data["car_valor_semestre"]}, car_numero_semestres = {$data["car_numero_semestres"]} WHERE car_codigoP='{$data["car_codigoP"]}'");
     }
 
