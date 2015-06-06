@@ -90,36 +90,37 @@ class EstudiantesController extends MasterController {
         Redirect::to(Url::getUrl("estudiantes", "index"));
     }
 
+    public function getEvaluar($request) {
+
+        $data['modalBody'] = './' . BASE_VIEWS . '/Estudiantes/Evaluar.php';
+        $data['formAction'] = Url::getUrl("estudiantes", "matricular");
+        $data['tituloModal'] = 'Evaluar Materias';
+
+        $data['data'] = $data;
+
+        $data['matriculas'] = matriculasMateriasM::retornarPorEstudiante($request["id"]);
+        $data['tituloModal'] = 'Evaluar Materias';
+        $data['id'] = $request["id"];
+
+        View::load('include/modalSimple', $data);
+    }
+
+    public function postEvaluar($request) {
+        
+        header('Content-type: application/json; charset=utf-8');
+
+        $method = "ingresarNotaCorte{$request["index"]}";
+        $data = [
+            "matmat_eva_nota_corte_{$request["index"]}" => $request["valor"],
+            "matmat_consecutivoP" => $request["matmat_consecutivoP"]
+        ];
+            
+        matriculasMateriasM::$method($data);
+        
+        $nota = matriculasMateriasM::NotaFinal($request["matmat_consecutivoP"]);
+        echo json_encode($nota["matmat_nota_final"]);
+    }
+
 }
-//    } else
-//    if ($action == "evaluar") {
-//        if($isPost){
-//            $method = "ingresarNotaCorte{$_POST["index"]}";
-//            $data = [
-//                "matmat_eva_nota_corte_{$_POST["index"]}" => $_POST["valor"],
-//                "matmat_consecutivoP" => $_POST["matmat_consecutivoP"]
-//            ];
-//            matriculasMateriasM::$method($data);
-//            header('Content-type: application/json; charset=utf-8');
-//            echo json_encode("Muy bien");
-//        }else{
-//            $matriculas = matriculasMateriasM::retornarPorEstudiante($_GET["id"]);
-//            $id = $_GET["id"];
-//            $data['modalBody'] = '../vistas/Estudiantes/Evaluar.php';
-//            $data['tituloModal'] = 'Evaluar Materias';
-//
-//            require '../vistas/include/modalSimple.php';
-//            
-//        }
-//    }else
-//    if ($action == "promedioMateria") {
-//        $nota = matriculasMateriasM::NotaFinal($_GET["matmat_consecutivoP"]);
-//        header('Content-type: application/json; charset=utf-8');
-//        echo json_encode($nota["matmat_nota_final"]);
-//        
-//    }
-//} else {
-//    $datos = estudiantesM::retornar();
-//    require '../vistas/Estudiantes/Lista.php';
-//}
+
 ?>

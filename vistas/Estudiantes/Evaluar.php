@@ -11,7 +11,7 @@
         </tr>
     </thead>
     <tbody>
-        <?php while ($materia = mysql_fetch_assoc($matriculas)) { ?>
+        <?php foreach ($matriculas as $key => $materia) { ?>
             <tr>
                 <td><?php echo $materia["mat_nombre"] ?></td>
                 <td><?php echo $materia["peri_nombre"] ?></td>
@@ -69,7 +69,7 @@
 <script>
 
     var estudiante = '<?php echo $id; ?>';
-
+var urlGuardar = '<?php echo Url::getUrl("estudiantes", "evaluar"); ?>';
     $(".editarNota").on("click", function (e) {
 
         $(".cancelNota").trigger("click");
@@ -102,7 +102,7 @@
         var id = $(this).data("id");
         var valor = $("#nota" + index + "_" + id + "_edit").find("input").val();
         $.ajax({
-            url: 'estudiantes.php?action=evaluar',
+            url: urlGuardar,
             data: {index: index, matmat_consecutivoP: id, valor: valor},
             type: 'Post',
             dataType: "json",
@@ -113,24 +113,11 @@
                 $("#nota" + index + "_" + id + "_edit").hide();
                 
                 ActualizarPromedio(id);
+                $("#promedio_" + id).html(data);
             }
         });
 
         e.preventDefault();
     });
-    
-    function ActualizarPromedio(id){
-        
-        $.ajax({
-            url: 'estudiantes.php?action=promedioMateria',
-            data: { matmat_consecutivoP: id },
-            type: 'Get',
-            dataType: "json",
-            success: function (data) {
-                debugger;
-                $("#promedio_" + id).html(data);
-            }
-        });
-    }
 
 </script>

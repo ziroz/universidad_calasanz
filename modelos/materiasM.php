@@ -5,6 +5,7 @@ class materiasM extends MasterModel implements InterfazModelos{
     static $primary = 'mat_codigoP';
     
     public static function ingresar($data){
+        ClearText::sanitize($data);
         static::query("INSERT INTO tbl_materias(mat_codigoP, mat_nombre, mat_descripcion, mat_cupos_maximo, mat_horas_semanales) VALUES ('{$data["mat_codigoP"]}','{$data["mat_nombre"]}','{$data["mat_descripcion"]}',{$data["mat_cupos_maximo"]},{$data["mat_horas_semanales"]})");  
     }
     
@@ -20,6 +21,7 @@ class materiasM extends MasterModel implements InterfazModelos{
     }
     
     public static function modificar($data){
+        ClearText::sanitize($data);
         static::query("UPDATE tbl_materias SET mat_nombre='{$data["mat_nombre"]}', mat_descripcion = '{$data["mat_descripcion"]}', mat_cupos_maximo = {$data["mat_cupos_maximo"]}, mat_horas_semanales = {$data["mat_horas_semanales"]} WHERE mat_codigoP='{$data["mat_codigoP"]}'");
     }
     public static function eliminar($id){

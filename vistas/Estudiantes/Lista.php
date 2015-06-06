@@ -11,7 +11,7 @@ View::load("include/header",$data);
                 Nombre Completo  
             </th>
             <th>
-                Fecha Nacimiento
+                F. Nacimiento
             </th>
             <th>
                 Email
@@ -26,7 +26,7 @@ View::load("include/header",$data);
                 Periodo
             </th>
             <th>
-                Fecha de Matrícula
+                F. Matrícula
             </th>                                
             <th></th>
         </tr>
@@ -60,7 +60,7 @@ View::load("include/header",$data);
                     <a href="<?php echo Url::getUrl("estudiantes", "modificar", ['id'=>$estudiante["est_per_consecutivoP"]]); ?>" class="openModal"> <i class="fa fa-edit"></i>Editar </a>                             
                     <a href="<?php echo Url::getUrl("estudiantes", "eliminar", ['id'=>$estudiante["est_per_consecutivoP"]]); ?>"><i class="fa fa-times-circle"></i>Eliminar </a>
                     <a href="<?php echo Url::getUrl("estudiantes", "matricular", ['id'=>$estudiante["est_per_consecutivoP"]]); ?>" class="openModal"> <i class="fa fa-edit"></i>Materias </a>                             
-                    <a href="<?php echo Url::getUrl("estudiantes", "evaluar", ['id'=>$estudiante["est_per_consecutivoP"]]); ?>"><i  style="display: block;" class="fa fa-times-circle"></i>Evaluar </a>  
+                    <a href="<?php echo Url::getUrl("estudiantes", "evaluar", ['id'=>$estudiante["est_per_consecutivoP"]]); ?>" class="openModal"><i class="fa fa-check"></i>Evaluar </a>  
                 </td>
             </tr>
         <?php } ?>
