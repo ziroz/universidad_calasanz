@@ -4,9 +4,14 @@ class EstudiantesController extends MasterController {
 
     public function getIndex() {
         $data['tituloPagina'] = "Estudiantes";
-        $data['datos'] = EstudiantesM::retornar();
 
-        View::load("Estudiantes/Lista", $data);
+        if (Session::getUser()['rol'] == '2') {
+            $data['materias'] = materiasM::retornarPorDocente(Session::getUser()['per_consecutivoP']);
+            View::load("Estudiantes/InicioDocente", $data);
+        } else {
+            $data['datos'] = EstudiantesM::retornar();
+            View::load("Estudiantes/Lista", $data);
+        }
     }
 
     public function getIngresar() {
@@ -98,7 +103,8 @@ class EstudiantesController extends MasterController {
 
         $data['data'] = $data;
 
-        $data['matriculas'] = matriculasMateriasM::retornarPorEstudiante($request["id"]);
+        $materia = isset($request['materia']) ? $request['materia'] : NULL;
+        $data['matriculas'] = matriculasMateriasM::retornarPorEstudiante($request["id"], $materia);
         $data['tituloModal'] = 'Evaluar Materias';
         $data['id'] = $request["id"];
 
@@ -106,7 +112,7 @@ class EstudiantesController extends MasterController {
     }
 
     public function postEvaluar($request) {
-        
+
         header('Content-type: application/json; charset=utf-8');
 
         $method = "ingresarNotaCorte{$request["index"]}";
@@ -114,11 +120,24 @@ class EstudiantesController extends MasterController {
             "matmat_eva_nota_corte_{$request["index"]}" => $request["valor"],
             "matmat_consecutivoP" => $request["matmat_consecutivoP"]
         ];
-            
+
         matriculasMateriasM::$method($data);
-        
+
         $nota = matriculasMateriasM::NotaFinal($request["matmat_consecutivoP"]);
         echo json_encode($nota["matmat_nota_final"]);
+    }
+
+    public function getListaPorMateria($request) {
+        $array = estudiantesM::retornarPorAsignatura($request['materia']);
+        $datos = [];
+        foreach ($array as $key => $estudiante) {
+            $nota = matriculasMateriasM::NotaFinal($estudiante["matmat_consecutivoP"]);
+            $estudiante['nota_final'] = $nota['matmat_nota_final'];
+            $datos[]=$estudiante;
+        }
+        
+        $data['datos'] = $datos;
+        View::load("Estudiantes/ListaDocente", $data);
     }
 
 }

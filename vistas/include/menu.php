@@ -12,6 +12,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
+                <?php  ?>
                 <li><a href="<?php echo Url::getUrl("programas", "index"); ?>">Carreras</a></li>
                 <li><a href="<?php echo Url::getUrl("periodos", "index"); ?>">Períodos</a></li>
                 <li><a href="<?php echo Url::getUrl("materias", "index"); ?>">Materias</a></li>

@@ -38,5 +38,17 @@ class estudiantesM extends MasterModel implements InterfazModelos{
          static::deleteById($id);
         personasM::eliminar($id);
     }
+    
+    public static function retornarPorAsignatura($asignatura) {
+                
+        return static::query("SELECT DISTINCT matmat_per_consecutivo, per_nombre_completo, per_identificacion, peri_consecutivoP, peri_nombre, matmat_mat_codigo,matmat_consecutivoP, car_nombre "
+                . "FROM tbl_matriculas_materias "
+                . "JOIN tbl_personas ON matmat_per_consecutivo = per_consecutivoP "
+                . "JOIN tbl_estudiantes ON est_per_consecutivoP = per_consecutivoP "
+                . "JOIN tbl_carreras ON est_car_codigo = car_codigoP "
+                . "JOIN tbl_materias ON mat_codigoP = matmat_mat_codigo "
+                . "JOIN tbl_periodos ON peri_consecutivoP = matmat_peri_consecutivo "
+                . "WHERE matmat_mat_codigo = '{$asignatura}'");
+    }
 }
 ?>

@@ -20,7 +20,15 @@ class SeguridadController extends MasterController {
             if (isset($request['returnUrl'])) {
                 Redirect::to($request['returnUrl']);
             } else {
-                Redirect::to(Url::getUrl("programas", "index"));
+                
+                if($usuario[0]['rol']=='1'){
+                    Redirect::to(Url::getUrl("programas", "index"));
+                }else
+                if($usuario[0]['rol'] == '2'){
+                    Redirect::to(Url::getUrl("estudiantes", "index"));
+                }else{
+                    Redirect::to(Url::getUrl("programas", "index"));
+                }
             }
         } else {
             Redirect::to(Url::getUrl("seguridad", "login"));

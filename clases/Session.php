@@ -4,8 +4,8 @@
 class Session {
 
     private static $PermisosRoles = [
-        "2" => ['programas','estudiantes','seguridad'],
         "1" => ['programas','materias','seguridad'],
+        "2" => [ 'estudiantes','seguridad'],
         "3" => ['programas', 'materias', 'periodos','estudiantes','docentes', 'seguridad','programasmaterias']
     ];
 

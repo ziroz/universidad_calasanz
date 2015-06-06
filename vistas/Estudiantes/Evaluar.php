@@ -112,8 +112,8 @@ var urlGuardar = '<?php echo Url::getUrl("estudiantes", "evaluar"); ?>';
                 $("#nota" + index + "_" + id).show();
                 $("#nota" + index + "_" + id + "_edit").hide();
                 
-                ActualizarPromedio(id);
                 $("#promedio_" + id).html(data);
+                $("#final_" + id).html(data);
             }
         });
 

@@ -6,7 +6,7 @@ class seguridadM extends MasterModel{
     
     public static function retornar($data) {
         ClearText::sanitize($data);
-        return static::query("SELECT per_rol as rol,per_nombre_completo FROM ".static::$table." WHERE per_usu_nombre='{$data["per_usu_nombre"]}' AND per_usu_contrasena = '{$data["per_usu_contrasena"]}'");
+        return static::query("SELECT per_rol as rol,per_nombre_completo,per_consecutivoP FROM ".static::$table." WHERE per_usu_nombre='{$data["per_usu_nombre"]}' AND per_usu_contrasena = '{$data["per_usu_contrasena"]}'");
     }
 }
 
