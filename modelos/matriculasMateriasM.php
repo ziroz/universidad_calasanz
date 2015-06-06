@@ -19,14 +19,14 @@ class matriculasMateriasM extends MasterModel implements InterfazModelos {
                         . "JOIN tbl_periodos  ON peri_consecutivoP = matmat_peri_consecutivo");
     }
 
-    public static function retornarPorEstudiante($estudiante, $materia = null) {
+    public static function retornarPorEstudiante($estudiante) {
         return static::query("SELECT matmat_consecutivoP, matmat_per_consecutivo, est.per_nombre_completo as per_nombre_completo, matmat_mat_codigo, mat_nombre, doc.per_nombre_completo AS per_nombre_completo_docente, matmat_aula, matmat_peri_consecutivo, peri_nombre, matmat_eva_nota_corte_1 ,matmat_eva_nota_corte_2 , matmat_eva_nota_corte_3, ROUND(((IFNULL(matmat_eva_nota_corte_1,0)+IFNULL(matmat_eva_nota_corte_2,0)+IFNULL(matmat_eva_nota_corte_3,0))/3),1) AS matmat_nota_final   "
                         . "FROM tbl_matriculas_materias "
                         . "JOIN tbl_personas est ON est.per_consecutivoP = matmat_per_consecutivo "
                         . "JOIN tbl_materias ON mat_codigoP = matmat_mat_codigo "
                         . "LEFT JOIN tbl_personas doc ON doc.per_consecutivoP = matmat_per_consecutivo_docente "
                         . "JOIN tbl_periodos  ON peri_consecutivoP = matmat_peri_consecutivo "
-                        . "WHERE est.per_consecutivoP = {$estudiante}". (!is_null($materia)? " AND matmat_mat_codigo=".$materia : ""));
+                        . "WHERE est.per_consecutivoP = {$estudiante}");
     }
 
     public static function detalleRetornar($id) {
