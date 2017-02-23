@@ -3,6 +3,7 @@
 class App {
 
     static function abort($code) {
+        echo 'abort';
 /*
         switch ($code) {
             case 0:
