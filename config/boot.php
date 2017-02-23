@@ -1,9 +1,9 @@
 <?php
 //DATABASE CONFIGURATIONS (change to the correct values)
-define("DB_SERVER", 'localhost');
-define("DB_USERNAME", 'root');
-define("DB_PASS", ''); 
-define("DB_DBASE", 'uni_calasaz');
+define("DB_SERVER", 'tcp:ciro.database.windows.net,1433');
+define("DB_USERNAME", 'ciro');
+define("DB_PASS", 'sql12345_'); 
+define("DB_DBASE", 'db_uni_calasaz');
 
 //-----------DO NOT CHANGE ------------------------
 
