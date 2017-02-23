@@ -9,7 +9,7 @@ class MasterController {
         //load the application's controllers/classes/models.       
         require './config/boot.php';
         session_start();
-    }
+    } 
 
     static function execute($request) {
                 static::init();        
