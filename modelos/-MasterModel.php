@@ -7,7 +7,8 @@ class MasterModel {
     static $link;
 
     public static function connect() {
-        static::$link = new PDO('mysql:host=' . DB_SERVER . ';dbname=' . DB_DBASE . ';charset=utf8', DB_USERNAME, DB_PASS);
+        //static::$link = new PDO('mysql:host=' . DB_SERVER . ';dbname=' . DB_DBASE . ';charset=utf8', DB_USERNAME, DB_PASS);
+         static::$link = new PDO("sqlsrv:server = ' . DB_SERVER . '; Database = ' . DB_DBASE . '", "'.DB_USERNAME.'", "'.DB_PASS.'");
     }
 
     public static function query($sql) {
