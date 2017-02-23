@@ -1,5 +1,5 @@
 <?php
-
+echo 'Index';
 class MasterController {
 
     private static $defaultMethod = 'index';
