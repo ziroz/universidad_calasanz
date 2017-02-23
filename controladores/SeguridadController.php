@@ -9,7 +9,7 @@ class SeguridadController extends MasterController {
         if (isset($request['returnUrl'])) {
             $data['returnUrl'] = $request['returnUrl'];
         }
-
+echo  'getLogin';
         View::load("Seguridad/Login", $data);
     }
 
