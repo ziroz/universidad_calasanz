@@ -3,7 +3,7 @@
 class App {
 
     static function abort($code) {
-
+/*
         switch ($code) {
             case 0:
                 Redirect::to('vistas/Shared/Error400.php');
@@ -15,7 +15,7 @@ class App {
                 Redirect::to('vistas/shared/Error401.php');
                 break;
         }
-
+*/
         exit;
     }
 
