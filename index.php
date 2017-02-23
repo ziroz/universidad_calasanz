@@ -15,7 +15,7 @@ class MasterController {
                 static::init();        
 
         if (!static::isValidRequest($request)) {            
-            App::abort(404);
+            //App::abort(404);
         }
         
         $controller = ucfirst($request['controller']) . ucfirst(static::$controllerSuffix);
@@ -34,7 +34,7 @@ class MasterController {
                 
                 Session::validatePermission($request['controller'],$action);
             }else{
-                App::abort(404);
+                //App::abort(404);
             }
         }
         
