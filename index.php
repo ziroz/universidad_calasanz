@@ -1,4 +1,5 @@
-<?php
+
+/*<?php
 
 class MasterController {
 
@@ -56,7 +57,10 @@ class MasterController {
 }
 
 MasterController::execute($_REQUEST);
-
+*/
+    
+    
+    HOLA
 
 
 
