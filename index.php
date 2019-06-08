@@ -1,3 +1,7 @@
+
+
+<p>Nuevo cambio</p>
+
 <?php
 class MasterController {
     private static $defaultMethod = 'index';
@@ -47,5 +51,3 @@ class MasterController {
 }
 MasterController::execute($_REQUEST);
 ?>
-
-<p>Nuevo cambio</p>
